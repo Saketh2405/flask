@@ -28,13 +28,14 @@ def predict():
         return 'Invalid file type, must be .wav', 400
     
     
-    file_name = "input"
+    file_name = "input.wav"
     audio_file.save(file_name)
+    return file_name
     
     
-    prediction = func(file_name)
-    print(prediction)
-    return prediction
+#     prediction = func(file_name)
+#     print(prediction)
+#     return prediction
 
 if __name__== '__main__':
     app.run(debug=True)
