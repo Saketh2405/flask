@@ -28,5 +28,9 @@ def predict():
     print(preditction)
     return preditction
 
+@app.route('/printf',methods=['GET'])
+def printf():
+    return "Display string"
+
 if __name__== '__main__':
     app.run(debug=True)
