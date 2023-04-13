@@ -3,5 +3,4 @@ gunicorn
 numpy
 pandas
 tensorflow-cpu
-tensorflow
 librosa
