@@ -22,15 +22,19 @@ def predict():
         return 'No file provided', 400
 
     audio_file = request.files['audio']
+   
+    
     if not audio_file.filename.lower().endswith('.wav'):
         return 'Invalid file type, must be .wav', 400
-    preditction = func(audio_file)
-    print(preditction)
-    return preditction
-
-@app.route('/printf',methods=['GET'])
-def printf():
-    return "Display string"
+    
+    
+    file_name = str(random.randint(0, 100000))
+    audio_file.save(file_name)
+    
+    
+    prediction = func(file_name)
+    print(prediction)
+    return prediction
 
 if __name__== '__main__':
     app.run(debug=True)
