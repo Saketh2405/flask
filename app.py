@@ -29,7 +29,7 @@ def predict():
         return 'Invalid file type, must be .wav', 400
     
     
-    file_name = str(random.randint(0, 100000))
+    file_name = "input"
     audio_file.save(file_name)
     
     
