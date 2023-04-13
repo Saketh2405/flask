@@ -8,13 +8,13 @@ app = Flask(__name__)
 model = tf.keras.models.load_model('s_model')
 d = {0: 'air_conditioner', 1: 'car_horn', 2: 'children_playing', 3: 'dog_bark', 4: 'drilling', 5: 'engine_idling', 6:'gun_shot', 7: 'jackhammer', 8: 'siren', 9: 'street_music'}
 
-def func(filename):
+def pred(filename):
     audio, sample_rate = librosa.load(filename)
     mfccs_features = librosa.feature.mfcc(y=audio, sr=sample_rate, n_mfcc=40)
     mfccs_scaled_features = np.mean(mfccs_features.T,axis=0)
     mfccs_scaled_features=mfccs_scaled_features.reshape(1,-1)
     predicted_label=np.argmax(model.predict(mfccs_scaled_features),axis=1)
-    return d[predicted_label[0]]
+    return "Reached"
 
 @app.route('/predict',methods=['POST'])
 def predict():
@@ -30,12 +30,12 @@ def predict():
     
     file_name = "input.wav"
     audio_file.save(file_name)
-    return file_name
+
     
     
-#     prediction = func(file_name)
-#     print(prediction)
-#     return prediction
+    prediction = pred(file_name)
+    print(prediction)
+    return prediction
 
 if __name__== '__main__':
     app.run(debug=True)
